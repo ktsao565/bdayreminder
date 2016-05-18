@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bdayremind/materialize/css/materialize.min.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div class="section blue darken-3">
+    <div class="container">
+        <h2 class="header center grey-text text-lighten-4">Birthday Reminder System</h2>
+        <h5 class="header center grey-text text-lighten-4">See all of your patient's birthdays and sen them emails!</h5>
+    </div>
+</div>
+<div class="container">
+    <h5><blockquote>Log in using DrChrono</blockquote></h5>
+<form action="https://drchrono.com/o/authorize/" method="GET" id="login">
+    <input type="hidden" name="redirect_uri" value="http://127.0.0.1:8000/bdayremind/auth"/>
+    <input type="hidden" name="client_id" value="qeNCkab7IXtkcr1gUrhkLDgFBvn1W4sXgNEu4MoY"/>
+    <input type="hidden" name="response_type" value="code"/>
+    <button class="btn waves-effect waves-light" form ="login" type="submit" name="action">Log In
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+</div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    {% load staticfiles %}
+<script src="{% static 'bdayremind/materialize/js/materialize.min.js' %}"></script>
+</body>
+</html>
