@@ -11,6 +11,7 @@ from .models import User
 
 
 def index(request):
+    request.session.flush()
     template = loader.get_template('bdayremind/index.html')
     return HttpResponse(template.render(request))
 
