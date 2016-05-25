@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-import datetime, pytz, requests, json
+import datetime, requests, json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader, Context
 from django.template.loader import get_template
@@ -54,18 +54,24 @@ def home(request):
     today = datetime.date.today()
     bday_list = []
     upcoming = []
+    previous = []
     for p in patients:
         if p['date_of_birth'] == None:
             continue
         bdate = datetime.datetime.strptime(p['date_of_birth'],"%Y-%m-%d")
-        if bdate.month >= today.month:
+        if bdate.month > today.month:
+            upcoming.append(p)
+        elif bdate.month == today.month:
             if bdate.day > today.day:
                 upcoming.append(p)
             if bdate.day == today.day:
                 bday_list.append(p)
+        else:
+            previous.append(p)
+    previous = sorted(previous,key=lambda patient:patient['date_of_birth'][5:])
     upcoming = sorted(upcoming,key=lambda patient:patient['date_of_birth'][5:])
     bday_list = sorted(bday_list,key=lambda patient:patient['date_of_birth'][5:])
-    return render(request, 'bdayremind/home.html', {'patients' : upcoming,'username': username, 'today':bday_list})
+    return render(request, 'bdayremind/home.html', {'previous':previous,'patients' : upcoming,'username': username, 'today':bday_list})
 
 
 def send(request):
