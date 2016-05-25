@@ -7,8 +7,7 @@ from django.template import loader, Context
 from django.template.loader import get_template
 from django.shortcuts import render
 from django.core.mail import EmailMessage
-from .models import User
-
+from django.core.urlresolvers import reverse
 
 def index(request):
     request.session.flush()
@@ -31,7 +30,7 @@ def auth(request):
     response.raise_for_status()
     data = response.json()
     request.session['access_token']=data['access_token']
-    return HttpResponseRedirect('http://127.0.0.1:8000/bdayremind/home')
+    return HttpResponseRedirect(reverse('home'))
 
 
 def home(request):
