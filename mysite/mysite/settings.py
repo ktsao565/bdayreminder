@@ -105,6 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
