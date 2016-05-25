@@ -16,14 +16,13 @@ def index(request):
 
 
 def auth(request):
-
     if 'error' in request.GET:
         raise ValueError('Error authorizing application: %s' % request.GET['error'])
 
     response = requests.post('https://drchrono.com/o/token/', data={
         'code': request.GET['code'],
         'grant_type': 'authorization_code',
-        'redirect_uri': 'http://127.0.0.1:8000/bdayremind/auth',
+        'redirect_uri': 'http://django-env.pugpagfzrb.us-west-2.elasticbeanstalk.com/bdayremind/auth/',
         'client_id': 'qeNCkab7IXtkcr1gUrhkLDgFBvn1W4sXgNEu4MoY',
         'client_secret': 'LyRiOShccBKaLInvSJKEqOUMxeTF7bzgWx5Yfw0LdG8IRa5Q30Q2FZQmQ5ijqQuMjSGjrGOHXoBHJpcEpgHsPzCVoucJYigpQ9HQdZsTdSlfe4ZYr1cw43kEIYVCzIkk',
         })
@@ -37,7 +36,7 @@ def home(request):
     if 'access_token' in request.session:
         access_token = request.session['access_token']
     else:
-        return HttpResponseRedirect('http://127.0.0.1:8000/bdayremind')
+        return HttpResponseRedirect(reverse('home'))
     headers = {
         'Authorization' : 'Bearer %s' % access_token
     }
@@ -77,7 +76,7 @@ def send(request):
     if 'access_token' in request.session:
         access_token = request.session['access_token']
     else:
-        return HttpResponseRedirect('http://127.0.0.1:8000/bdayremind')
+        return HttpResponseRedirect(reverse('home'))
     email = [request.GET['email']]
     url = 'https://drchrono.com/api/doctors'
     headers = {
