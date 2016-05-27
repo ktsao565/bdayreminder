@@ -65,9 +65,9 @@ def home(request):
                 bday_list.append(p)
         else:
             previous.append(p)
-    previous = sorted(previous,key=lambda patient:patient['date_of_birth'][5:])
-    upcoming = sorted(upcoming,key=lambda patient:patient['date_of_birth'][5:])
-    bday_list = sorted(bday_list,key=lambda patient:patient['date_of_birth'][5:])
+    previous = sorted(previous,key=lambda patient: patient['date_of_birth'][5:])
+    upcoming = sorted(upcoming,key=lambda patient: patient['date_of_birth'][5:])
+    bday_list = sorted(bday_list,key=lambda patient: patient['date_of_birth'][5:])
     return render(request, 'bdayremind/home.html', {'previous':previous,'patients' : upcoming,'username': username, 'today':bday_list})
 
 

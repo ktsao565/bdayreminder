@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^bdayremind/', include('bdayremind.urls')),
+    url(r'^findstate/',include('findstate.urls')),
     url(r'^admin/', admin.site.urls),
 ]
