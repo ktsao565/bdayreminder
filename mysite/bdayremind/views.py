@@ -40,10 +40,10 @@ def home(request):
         'Authorization' : 'Bearer %s' % access_token
     }
     response = requests.get('https://drchrono.com/api/users/current', headers=headers)
-    data = response.json()
-    username = data['username']
+    res = response.json()
+    username = res['username']
     patients = []
-    patients_url ='https://drchrono.com/api/patients'
+    patients_url = 'https://drchrono.com/api/patients'
     while patients_url:
         data = requests.get(patients_url,headers=headers).json()
         patients.extend(data['results'])
